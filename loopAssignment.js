@@ -19,6 +19,36 @@ var _ = {
         } else {
             console.log("error");
         }
+    },
+    // map(list, callback) {
+    //     if(typeof list === "object") {
+    //         console.log("object");
+    //         if(Array.isArray(list)) {
+    //             console.log("the object is an array");
+    //             let newArr = [];
+    //             for(var i = 0; i < list.length; i++) {
+    //                 newArr.push(callback(list[i], i, list));
+    //             }
+    //             return newArr;
+    //         }
+    //     } else {
+    //         console.log("error");
+    //     }
+    // }
+    map(list, callback) {
+        if(typeof list === "object") {
+            console.log("object");
+            if(Array.isArray(list)) {
+                console.log("the object is an array");
+                let newArr = [];
+                _.each(list, function(elem, id, arr) {
+                    newArr.push(callback(elem, id, arr));
+                });
+                return newArr;
+            }
+        } else {
+            console.log("error");
+        }
     }
 };
 
@@ -31,9 +61,7 @@ _.each(["emmo arr", "vans arr"], function(element) {
 });
 
 
-_.map = function() { _.each; }
-
-let raw = _.map(["emmo arr", "vans arr"], function() {
-    return `place ${elem}`;
+let raw = _.map(["emmo arr", "vans arr"], function(elem, id) {
+    return `place ${elem} ${id}`;
 })
 console.log(raw);
